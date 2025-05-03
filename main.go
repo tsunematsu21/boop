@@ -13,6 +13,7 @@ func main() {
 	subcommands.Register(subcommands.FlagsCommand(), "help")
 	subcommands.Register(subcommands.CommandsCommand(), "help")
 	subcommands.Register(&arpCmd{}, "")
+	subcommands.Register(&icmpCmd{}, "")
 
 	flag.Parse()
 	ctx := context.Background()

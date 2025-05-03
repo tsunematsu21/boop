@@ -62,3 +62,7 @@ func getInterfaceIPv4(iface *net.Interface) (*net.IP, error) {
 	}
 	return nil, errors.New("no ip v4 address found")
 }
+
+func isIPv6(ip net.IP) bool {
+	return ip.To4() == nil && ip.To16() != nil
+}
