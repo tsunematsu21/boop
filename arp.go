@@ -110,18 +110,15 @@ func readArpPacket(handle *pcap.Handle, iface *net.Interface) *layers.ARP {
 	src := gopacket.NewPacketSource(handle, layers.LayerTypeEthernet)
 	in := src.Packets()
 	for {
-		var packet gopacket.Packet
-		select {
-		case packet = <-in:
-			arpLayer := packet.Layer(layers.LayerTypeARP)
-			if arpLayer == nil {
-				continue
-			}
-			arp := arpLayer.(*layers.ARP)
-			if arp.Operation != layers.ARPReply || bytes.Equal([]byte(iface.HardwareAddr), arp.SourceHwAddress) {
-				continue
-			}
-			return arp
+		packet := <-in
+		arpLayer := packet.Layer(layers.LayerTypeARP)
+		if arpLayer == nil {
+			continue
 		}
+		arp := arpLayer.(*layers.ARP)
+		if arp.Operation != layers.ARPReply || bytes.Equal([]byte(iface.HardwareAddr), arp.SourceHwAddress) {
+			continue
+		}
+		return arp
 	}
 }
