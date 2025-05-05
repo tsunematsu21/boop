@@ -32,9 +32,11 @@ func (c *icmpCmd) SetFlags(f *flag.FlagSet) {
 }
 
 func (c *icmpCmd) Execute(_ context.Context, f *flag.FlagSet, _ ...any) subcommands.ExitStatus {
-	var nw string
-	var listen string
-	var proto string
+	var (
+		nw     string
+		listen string
+		proto  string
+	)
 	if c.ipv6 {
 		nw = "ip6"
 		proto = "ip6:ipv6-icmp"
