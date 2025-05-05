@@ -14,6 +14,7 @@ func main() {
 	subcommands.Register(subcommands.CommandsCommand(), "help")
 	subcommands.Register(&arpCmd{}, "")
 	subcommands.Register(&icmpCmd{}, "")
+	subcommands.Register(&tcpCmd{}, "")
 
 	flag.Parse()
 	ctx := context.Background()
