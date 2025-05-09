@@ -6,10 +6,14 @@ Supported protocols:
 * ICMP (echo request/reply)
 * TCP
 
+## Install
+```bash
+go install github.com/tsunematsu21/boop@latest
+```
+
 ## Usage
 ```
-$ go build ./...
-$ ./boop help
+$ boop help
 Usage: boop <flags> <subcommand> <subcommand args>
 
 Subcommands:
